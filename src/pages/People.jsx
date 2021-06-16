@@ -1,20 +1,20 @@
 import { useState, useEffect } from 'react';
-import { getPeopleFromServer } from '../packages/apiCall';
-import PeopleList from '../components/PeopleList';
+import { getAllFromServer } from '../packages/apiCall';
+import List from '../components/List';
 
 const People = (props) => { 
     const [ data, setData ] = useState([]);
 
     useEffect(() => {
         async function fetchAndSetData() {
-            setData(await getPeopleFromServer());
+            setData(await getAllFromServer('people'));
         };
         fetchAndSetData();
     }, []);
 
     return (
         <div>
-           <PeopleList list={ data }/> 
+           <List list={ data }/> 
         </div>
     )
 }

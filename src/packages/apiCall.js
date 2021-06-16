@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-const getPeopleFromServer = async () => {
-    const url = 'https://swapi.dev/api/people';
+const getAllFromServer = async (property) => {
+    const url = `https://swapi.dev/api/${property}`;
 
-    let arrayOfPeople = await axios.get(url)
+    let arrayOfAll = await axios.get(url)
     .then((res) => {
         return res['data']['results'];
     })
@@ -14,7 +14,7 @@ const getPeopleFromServer = async () => {
         console.error(err);
     });
 
-    return arrayOfPeople;
+    return arrayOfAll;
 }
 
 const getAttributeFromURL = async (url, attribute) => {
@@ -30,6 +30,6 @@ const getAttributeFromURL = async (url, attribute) => {
 }
 
 export { 
-    getPeopleFromServer,
+    getAllFromServer,
     getAttributeFromURL
 };
