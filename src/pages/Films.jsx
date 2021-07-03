@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { getAllFromServer } from '../packages/apiCall';
+import FilmCard from '../components/FilmCard';
 import List from '../components/List';
 
-const People = (props) => { 
+const Films = (props) => {
     const [ data, setData ] = useState([]);
 
     useEffect(() => {
@@ -14,9 +15,9 @@ const People = (props) => {
 
     return (
         <div>
-           <List list={ data }/> 
+           <List list={ data } cardComponent={ <FilmCard /> }/> 
         </div>
     )
 }
 
-export default People;
+export default Films;
