@@ -9,23 +9,43 @@ import {
 } from 'react-router-dom';
 
 import Home from './pages/Home';
-import Films from './pages/Films';
-import People from './pages/People';
-import Planets from './pages/Planets';
-import Species from './pages/Species';
-import Vehicles from './pages/Vehicles';
+import ContextPage from './pages/ContextPage';
 
 import Logo from './components/Logo'
 
 import './App.css';
 
 const TITLE = 'Star Wars Wiki'
+const PAGES = [
+	'films',
+	'people',
+	'planets',
+	'species',
+	'vehicles'
+]
 
 const App = () => {
-  useEffect(() => {
-    document.title = TITLE;
-  }, []);
+	useEffect(() => {
+		document.title = TITLE;
+	}, []);
 
+	let linkList = PAGES.map((element) => {
+		return (
+			<div key={ element }>
+				<Link to={ `/${ element }` }>
+					{ element.toUpperCase() }
+				</Link>
+			</div>
+		)
+	});
+
+	let routeList = PAGES.map((element) => {
+		return (
+				<Route path={ `/${ element }` } key={ element }>
+					<ContextPage context={element} />
+				</Route>
+		)
+	});
 
   return (
     <Router>
@@ -33,46 +53,18 @@ const App = () => {
         <Link to='/'><Logo/></Link>
       </div>
         <nav>
-          <ul>
-            <li>
-              <Link to='/'>HOME</Link>
-            </li>
-            <li>
-              <Link to='/films'>FILMS</Link>
-            </li>
-            <li>
-              <Link to='/people'>PEOPLE</Link>
-            </li>
-            <li>
-              <Link to='/planets'>PLANETS</Link>
-            </li>
-            <li>
-              <Link to='/species'>SPECIES</Link>
-            </li>
-            <li>
-              <Link to='/vehicles'>VEHICLES</Link>
-            </li>
-          </ul>
+			<div>
+				<Link to="/">
+					HOME
+				</Link>
+			</div>
+			{ linkList }
         </nav>
         <Switch>
-            <Route path='/films'>
-              <Films />
-            </Route>
-            <Route path='/people'>
-              <People /> 
-            </Route>
-            <Route path='/planets'>
-              <Planets />
-            </Route>
-            <Route path='/species'>
-              <Species />
-            </Route>
-            <Route path='/vehicles'>
-              <Vehicles />
-            </Route>
-            <Route path='/'>
-              <Home />
-            </Route>
+			{ routeList }
+			<Route path="/">
+				<Home />
+			</Route>
           </Switch>
         </Router>
   );

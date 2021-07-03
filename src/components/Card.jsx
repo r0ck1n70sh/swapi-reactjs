@@ -1,52 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { isURL } from "is-url";
+import React from "react";
 
-import URLList from "./URLList";
+import CardImage from './CardImage';
 
 const Card = (props) => {
-    const data = props.data;
-    const [ attr, setAttr ] = useState([]);
-
-    useEffect(() => {
-        let listAttr = [];
-        for( const prop in data ){
-            let  propData;
-            if( Array.isArray( data[prop] ) ){
-                propData = (
-                    <span>
-                        <URLList data={ data[prop]} />
-                    </span> 
-                 );
-            } else if(isURL( data[prop] )) {
-                propData = ( 
-                    <span>
-                        <URLList data={ [ data[prop] ] } />
-                    </span>
-                 );
-            } else {
-               propData = (
-                   <span>
-                        <URLList data={ data[prop] } />
-                   </span> 
-               );
-            }
-
-            let element = (
-                <div>
-                    <h4>
-                        { prop }: { propData }
-                    </h4>
-                </div>
-            );
-
-            listAttr.push(element);
-        }
-        setAttr(listAttr);
-    }, [data]);
+    const title = props.title;
+	const url = props.url;
 
     return (
         <div>
-            { attr }
+            { title }
+			<CardImage url={ url } />
         </div>
     );
 }
