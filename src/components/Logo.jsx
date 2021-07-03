@@ -1,3 +1,5 @@
+import React from 'react';
+
 import './Logo.css'
 import logo from '../resources/images/logo.png'
 

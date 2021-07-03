@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'font-awesome/css/font-awesome.min.css'
 
 const CardImage = (props) => {

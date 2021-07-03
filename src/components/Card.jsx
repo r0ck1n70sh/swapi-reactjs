@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { isURL } from "is-url";
 
 import URLList from "./URLList";

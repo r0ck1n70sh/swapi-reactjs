@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { getAllFromServer } from '../packages/apiCall';
 import List from '../components/List';
 
@@ -16,7 +16,7 @@ const People = (props) => {
         <div>
            <List list={ data }/> 
         </div>
-    )
+    );
 }
 
 export default People;

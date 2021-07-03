@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { getAllFromServer } from '../packages/apiCall';
 import FilmCard from '../components/FilmCard';
 import List from '../components/List';

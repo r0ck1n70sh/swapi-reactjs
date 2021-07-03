@@ -1,10 +1,4 @@
-<<<<<<< HEAD
-import { 
-	BrowserRouter as router
-} from 'react-router-dom';
-
-=======
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import {
   BrowserRouter as Router,
@@ -16,7 +10,6 @@ import {
 
 import Home from './pages/Home';
 import Films from './pages/Films';
->>>>>>> 103fa7674de4835a69e407897553e281bdcdeecd
 import People from './pages/People';
 import Planets from './pages/Planets';
 import Species from './pages/Species';

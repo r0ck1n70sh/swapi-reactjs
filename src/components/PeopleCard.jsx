@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import URLList from './URLList';
 import CardImage from './CardImage';
 import { getAttributeFromURL } from '../packages/apiCall';

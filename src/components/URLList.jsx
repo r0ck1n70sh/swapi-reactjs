@@ -1,3 +1,5 @@
+import React from 'react'
+
 const URLList = (props) => {
     let { data } = props;
     let list = data.map((urlString) => {
