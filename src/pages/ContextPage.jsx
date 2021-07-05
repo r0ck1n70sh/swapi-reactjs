@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 import { getAllFromServer } from '../packages/apiCall';
 
-import List from '../components/List';
 import Paginator from '../components/Paginator';
+import ModelSwitch from '../components/ModelSwitch';
 
 
 const ContextPage = (props) => {
@@ -23,8 +24,6 @@ const ContextPage = (props) => {
 			setData( dataList );
 			setNextPage( next );
 			setPrevPage( prev );
-
-			console.log(next); console.log(prev);
 		})();
 	}, [ page ]);
 
@@ -46,7 +45,13 @@ const ContextPage = (props) => {
 				prev={ prevPage }
 				onClick={ paginatorEvent }
 			/>
-			<List list={ data } context={ context } />
+			<Router basename={ context }>
+				<ModelSwitch
+				list={ data }
+				context={ context }
+			/>
+			</Router>
+			
 		</div>
 	)
 }

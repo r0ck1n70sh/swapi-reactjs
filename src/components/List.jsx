@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Card from './Card';
 import './List.css';
 
@@ -13,10 +14,12 @@ const List = (props) => {
 
         return (
             <div key = { idx }>
-                <Card
-					title={ element[attr] }
-					url={ element.url }
-				/>
+				<Link to={ `/DetailView/${idx}` }>
+					<Card
+						title={ element[attr] }
+						url={ element.url }
+					/>
+				</Link>
             </div>
         )
     });
