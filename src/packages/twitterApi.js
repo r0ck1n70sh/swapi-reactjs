@@ -1,20 +1,21 @@
 import axios from "axios";
-import { BEARER_TOKEN } from "../assest/keys";
 
 const getLatestTweets = async () => {
-	const url = "https://api.twitter.com/2/tweets/search/recent"
+	const url = "https://twitter-api-proxy-nodejs.herokuapp.com/search"
 	let tweets = await axios({
 		url: url,
-		method: "get",
-		headers : {
-			Authorization: `Bearer ${ BEARER_TOKEN }`
-		},
-		params : {
+		method: "post",
+		data : {
 			query: "star wars",
 		}
 	}).then((res) => {
-		return res.data.data;
-	}).catch((err) => {
+		return res.data;
+	}).then((res) => {
+		return JSON.parse(res);
+	}).then((res) => {
+		return res["statuses"];
+	})
+	.catch((err) => {
 		console.error(err);
 	})
 

@@ -1,19 +1,51 @@
 import React, { useState, useEffect } from 'react';
+
 import { getAllFromServer } from '../packages/apiCall';
+
 import List from '../components/List';
+import Paginator from '../components/Paginator';
+
 
 const ContextPage = (props) => {
 	const [ data, setData ] = useState([]);
+	const [ page, setPage ] = useState(1);
+	const [ nextPage, setNextPage ] = useState(false);
+	const [ prevPage, setPrevPage ] = useState(false);
+
 	const context = props.context;
 
 	useEffect(() => {
 		(async function fetchAndSetData() {
-			setData(await getAllFromServer(context));	
+			const { dataList, next, prev } = await getAllFromServer({
+				context: context,
+				page: page
+			});	
+			setData( dataList );
+			setNextPage( next );
+			setPrevPage( prev );
+
+			console.log(next); console.log(prev);
 		})();
-	}, []);
+	}, [ page ]);
+
+	const paginatorEvent = ( event ) => {
+		let eventTarget = event.target.name;
+		
+		if( eventTarget === '+' ) {
+			setPage( page => page + 1 );
+		} else if( eventTarget === '-' ) {
+			setPage( page => page - 1 );
+		}
+	}
 
 	return (
 		<div>
+			<Paginator 
+				curr={ page }
+				next={ nextPage }
+				prev={ prevPage }
+				onClick={ paginatorEvent }
+			/>
 			<List list={ data } context={ context } />
 		</div>
 	)

@@ -41,5 +41,5 @@
   },
   "devDependencies": {
     "@fortawesome/react-fontawesome": "^0.1.14"
-  },
+  }
 }

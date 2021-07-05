@@ -1,11 +1,20 @@
 import axios from 'axios';
 
-const getAllFromServer = async (property) => {
-    const url = `https://swapi.dev/api/${property}`;
+const getAllFromServer = async ({ context, page }) => {
+    const url = `https://swapi.dev/api/${ context }?page=${ page }`;
 
     let arrayOfAll = await axios.get(url)
-    .then((res) => {
-        return res['data']['results'];
+	.then((res) => {
+		return res["data"];
+	})
+    .then((data) => {
+		let next = (data["next"]) ? true : false;  
+		let prev = (data["previous"]) ? true : false;
+        return {
+			dataList: data["results"],
+			next: next,
+			prev: prev,	
+		};
     })
     .then((res) => {
         return res;
